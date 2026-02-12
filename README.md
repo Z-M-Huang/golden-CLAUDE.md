@@ -1,5 +1,7 @@
 # Golden CLAUDE.md
 
+English | [中文](README-zh.md)
+
 A copy-paste-ready behavioral template for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Research-backed. Oath-style. Under 60 lines.
 
 Distilled from 30+ of the most successful CLAUDE.md files, blog posts, and Anthropic's own documentation into one firm, general-purpose set of behavioral rules.

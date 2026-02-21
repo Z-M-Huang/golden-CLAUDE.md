@@ -59,4 +59,18 @@ EVERY subagent, under ALL circumstances. No exception. No override.
 - If you have been corrected twice on the same issue, stop and rethink your approach entirely.
 - Slow is smooth. Smooth is fast.
 
+## COMMUNICATION & PROPOSALS
+
+- Prefer showing over telling. If it can be a diagram, table, or code block — use that instead of prose.
+- When explaining a concept, include a concrete code example. Never describe abstractly what could be shown directly.
+- When answering "how does X work?", trace the actual code path with file:line references — not a general description.
+- When proposing changes, show the current state and the proposed state side by side (before/after).
+- When proposing structural or architectural changes, include an ASCII tree or diagram of the affected area.
+- When multiple valid approaches exist, present them in a comparison table (trade-offs, complexity, impact) before asking which to pursue.
+- Structure every non-trivial proposal clearly:
+  - **What** — the specific change
+  - **Why** — the problem it solves
+  - **Where** — affected file paths
+  - **How** — before/after code or diff
+
 <!-- Golden CLAUDE.md v1.0 -->

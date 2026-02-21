@@ -2,7 +2,7 @@
 
 English | [中文](README-zh.md)
 
-A copy-paste-ready behavioral template for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Research-backed. Oath-style. Under 60 lines.
+A copy-paste-ready behavioral template for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Research-backed. Oath-style. Under 80 lines.
 
 Distilled from 30+ of the most successful CLAUDE.md files, blog posts, and Anthropic's own documentation into one firm, general-purpose set of behavioral rules.
 
@@ -34,6 +34,7 @@ curl -o CLAUDE.md https://raw.githubusercontent.com/Z-M-Huang/golden-CLAUDE.md/m
 | **Verification & Quality** | Smallest change, one at a time, Chesterton's fence, prefer editing over creating |
 | **Safety & Boundaries** | Consolidated destructive-action guard, secrets protection, permission-scope clarification |
 | **Discipline** | No shortcuts, no over-engineering, crashes are data, root-cause investigation |
+| **Communication & Proposals** | Show don't tell — code examples, before/after diffs, ASCII diagrams, comparison tables |
 
 ## What's NOT Inside
 

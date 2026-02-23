@@ -8,21 +8,25 @@
 
 ## 快速开始
 
-**个人开发者** — 全局生效：
+**安装**（推荐）— 作为 Claude Code 的默认行为规则全局生效：
 
 ```bash
-curl -o ~/.claude/CLAUDE.md https://raw.githubusercontent.com/Z-M-Huang/golden-CLAUDE.md/main/CLAUDE.md
+mkdir -p ~/.claude && curl -o ~/.claude/CLAUDE.md https://raw.githubusercontent.com/Z-M-Huang/golden-CLAUDE.md/main/CLAUDE.md
 ```
 
-**团队项目** — 添加到仓库根目录：
+这是推荐做法。行为规则是通用的，不会因项目而异，所以放在用户级别（`~/.claude/CLAUDE.md`）最合适。项目根目录的 `CLAUDE.md` 留给项目专属信息（技术栈、测试命令、约定等）。
+
+**团队共享** — 作为规则文件提交到仓库：
 
 ```bash
-curl -o CLAUDE.md https://raw.githubusercontent.com/Z-M-Huang/golden-CLAUDE.md/main/CLAUDE.md
+mkdir -p .claude/rules && curl -o .claude/rules/golden.md https://raw.githubusercontent.com/Z-M-Huang/golden-CLAUDE.md/main/CLAUDE.md
 ```
+
+> 用 `.claude/rules/` 而不是项目根目录，可以把行为规则和项目信息分开管理。Claude Code 会自动加载两者。
 
 **已有 CLAUDE.md** — 把 Golden 规则粘贴到你文件的**最顶部**，放在项目专属规则之上。行为规则放在前面，注意力预算的利用率最高。
 
-> 如果合并后的 CLAUDE.md 超过约120行，建议把项目专属规则移到 `.claude/rules/*.md` 文件中。详见 [常见问题](https://github.com/Z-M-Huang/golden-CLAUDE.md/wiki/FAQ-zh)。
+> 如果合并后的 CLAUDE.md 超过约120行，建议拆分：行为规则放 `~/.claude/CLAUDE.md`，项目专属规则放 `./CLAUDE.md`。详见 [常见问题](https://github.com/Z-M-Huang/golden-CLAUDE.md/wiki/FAQ-zh)。
 
 ## 模板内容
 

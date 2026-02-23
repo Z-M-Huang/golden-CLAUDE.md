@@ -8,21 +8,25 @@ Distilled from 30+ of the most successful CLAUDE.md files, blog posts, and Anthr
 
 ## Quick Start
 
-**Solo developer** — apply globally to all projects:
+**Install** (recommended) — apply globally as your default Claude Code behavior:
 
 ```bash
-curl -o ~/.claude/CLAUDE.md https://raw.githubusercontent.com/Z-M-Huang/golden-CLAUDE.md/main/CLAUDE.md
+mkdir -p ~/.claude && curl -o ~/.claude/CLAUDE.md https://raw.githubusercontent.com/Z-M-Huang/golden-CLAUDE.md/main/CLAUDE.md
 ```
 
-**Team project** — add to your repository root:
+This is the recommended approach. Behavioral rules are universal — they don't change per project, so user scope (`~/.claude/CLAUDE.md`) is the natural home. Your project-root `CLAUDE.md` stays free for project-specific context (tech stack, test commands, conventions).
+
+**Share with your team** — commit to your repository as a rules file:
 
 ```bash
-curl -o CLAUDE.md https://raw.githubusercontent.com/Z-M-Huang/golden-CLAUDE.md/main/CLAUDE.md
+mkdir -p .claude/rules && curl -o .claude/rules/golden.md https://raw.githubusercontent.com/Z-M-Huang/golden-CLAUDE.md/main/CLAUDE.md
 ```
+
+> Using `.claude/rules/` instead of the project root keeps the behavioral rules separate from project context. Claude Code loads both automatically.
 
 **Existing CLAUDE.md** — paste the golden rules at the **top** of your file, above your project-specific rules. Behavioral rules go first for maximum attention budget.
 
-> If your combined CLAUDE.md exceeds ~120 lines, move project-specific rules to `.claude/rules/*.md` files. See the [wiki](../../wiki/FAQ) for details.
+> If your combined CLAUDE.md exceeds ~120 lines, consider splitting: behavioral rules in `~/.claude/CLAUDE.md`, project-specific rules in `./CLAUDE.md`. See the [wiki](../../wiki/FAQ) for details.
 
 ## What's Inside
 

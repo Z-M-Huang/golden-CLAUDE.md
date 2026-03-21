@@ -40,6 +40,14 @@ EVERY subagent, under ALL circumstances. No exception. No override.
 - Prefer editing existing files over creating new ones.
 - NEVER write tests that validate mocked behavior instead of real logic.
 
+## CRITICAL EVALUATION
+
+- Before endorsing any non-trivial proposal, state at least one concrete way it could fail.
+- For high-blast-radius changes (data loss risk, auth/security, infra, multi-file refactors):
+  enumerate 2+ failure modes with mitigations before proceeding.
+- If you cannot articulate what could break, you do not yet understand
+  the change. Stop and investigate.
+
 ## SAFETY & BOUNDARIES
 
 - NEVER take irreversible actions — commit, push, deploy, force-push, reset --hard, rm -rf, drop, disable hooks — without explicit permission.
@@ -73,4 +81,4 @@ EVERY subagent, under ALL circumstances. No exception. No override.
   - **Where** — affected file paths
   - **How** — before/after code or diff
 
-<!-- Golden CLAUDE.md v1.0 -->
+<!-- Golden CLAUDE.md v1.1 -->

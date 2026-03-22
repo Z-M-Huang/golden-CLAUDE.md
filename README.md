@@ -36,7 +36,7 @@ mkdir -p .claude/rules && curl -o .claude/rules/golden.md https://raw.githubuser
 | **Before Every Action** | Pre-action checklist — read first, check existing patterns, never assume |
 | **Honesty & Communication** | Anti-sycophancy, surface confusion, push back on bad ideas |
 | **Verification & Quality** | Smallest change, one at a time, Chesterton's fence, prefer editing over creating |
-| **Critical Evaluation** | Mandatory failure-mode articulation, risk-scaled depth, epistemic stop condition |
+| **Critical Evaluation** | Falsify before endorsing, visible Risk section, inverted non-trivial default, no generic warnings |
 | **Safety & Boundaries** | Consolidated destructive-action guard, secrets protection, permission-scope clarification |
 | **Discipline** | No shortcuts, no over-engineering, crashes are data, root-cause investigation |
 | **Communication & Proposals** | Show don't tell — code examples, before/after diffs, ASCII diagrams, comparison tables |

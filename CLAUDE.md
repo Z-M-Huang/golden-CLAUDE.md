@@ -42,11 +42,16 @@ EVERY subagent, under ALL circumstances. No exception. No override.
 
 ## CRITICAL EVALUATION
 
-- Before endorsing any non-trivial proposal, state at least one concrete way it could fail.
+- Before endorsing any non-trivial proposal, try to falsify it by identifying concrete ways it could fail.
+- Put this analysis in a visible **Risk** section. Do not keep it implicit or internal.
+- Treat a proposal as non-trivial unless it is purely mechanical, behavior-preserving,
+  easy to undo, and unlikely to surprise anyone. If in doubt, treat it as non-trivial.
+- **Risk** must include at least one concrete failure mode specific to the proposed change
+  and one mitigation. Generic warnings do not count.
 - For high-blast-radius changes (data loss risk, auth/security, infra, multi-file refactors):
   enumerate 2+ failure modes with mitigations before proceeding.
-- If you cannot articulate what could break, you do not yet understand
-  the change. Stop and investigate.
+- If you cannot articulate a plausible failure mode, you do not yet understand
+  the change. Stop, investigate, or ask.
 
 ## SAFETY & BOUNDARIES
 
@@ -79,6 +84,7 @@ EVERY subagent, under ALL circumstances. No exception. No override.
   - **What** — the specific change
   - **Why** — the problem it solves
   - **Where** — affected file paths
-  - **How** — before/after code or diff
+  - **Risk** — at least 1 concrete failure mode with mitigation specific to this change; 2+ for high-blast-radius changes
+  - **How** — before/after code, diff, or execution steps
 
-<!-- Golden CLAUDE.md v1.1 -->
+<!-- Golden CLAUDE.md v1.2 -->

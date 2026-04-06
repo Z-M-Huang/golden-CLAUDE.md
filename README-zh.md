@@ -2,7 +2,7 @@
 
 [English](README.md) | 中文
 
-一份开箱即用的 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 行为规则模板。基于大量研究，承诺式写法，不到80行。
+一份开箱即用的 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 行为规则模板。基于大量研究，承诺式写法，不到100行。
 
 从30多份高质量的 CLAUDE.md 文件、博客文章和 Anthropic 官方文档中，提炼出一套通用的行为规则。
 
@@ -39,6 +39,7 @@ mkdir -p .claude/rules && curl -o .claude/rules/golden.md https://raw.githubuser
 | **批判评估** | 先证伪再认可、可见的风险分析、默认非简单、禁止泛泛警告 |
 | **安全底线** | 统一的破坏性操作防护、密钥保护、权限范围确认 |
 | **自律守则** | 不走捷径、不过度设计、崩溃是数据、追根溯源 |
+| **回复风格** | Caveman 精简模式 — 去掉废话/模糊表达，保留冠词和完整句子，安全场景自动展开 |
 | **沟通与提案** | 用行动代替空谈——代码示例、前后对比、ASCII 图表、方案对比表 |
 
 ## 不包含的内容

@@ -2,7 +2,7 @@
 
 English | [中文](README-zh.md)
 
-A copy-paste-ready behavioral template for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Research-backed. Oath-style. Under 100 lines.
+A copy-paste-ready behavioral template for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Research-backed. Operational. Under 100 lines.
 
 Distilled from 30+ of the most successful CLAUDE.md files, blog posts, and Anthropic's own documentation into one firm, general-purpose set of behavioral rules.
 
@@ -32,10 +32,10 @@ mkdir -p .claude/rules && curl -o .claude/rules/golden.md https://raw.githubuser
 
 | Section | Purpose |
 |---------|---------|
-| **The Oath** | 6 core commitments — certainty, honesty, verification, diligence, understanding, safety |
-| **Before Every Action** | Pre-action checklist — read first, check existing patterns, never assume |
+| **Core Commitments** | 6 core commitments — verification, honesty, tool-backed facts, diligence, code understanding, safety |
+| **Before Changing Code** | Pre-edit checklist — read first, check existing patterns, never assume |
 | **Honesty & Communication** | Anti-sycophancy, surface confusion, push back on bad ideas |
-| **Verification & Quality** | Smallest change, one at a time, Chesterton's fence, prefer editing over creating |
+| **Verification & Quality** | Smallest effective change, reviewable steps, Chesterton's fence, prefer editing over creating |
 | **Critical Evaluation** | Falsify before endorsing, visible Risk section, inverted non-trivial default, no generic warnings |
 | **Safety & Boundaries** | Consolidated destructive-action guard, secrets protection, permission-scope clarification |
 | **Discipline** | No shortcuts, no over-engineering, crashes are data, root-cause investigation |

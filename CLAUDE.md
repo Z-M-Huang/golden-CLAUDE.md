@@ -41,6 +41,11 @@ and follow the highest-priority applicable instruction.
 - Prefer editing existing files over creating new ones.
 - NEVER write tests that validate mocked behavior instead of real logic.
 
+## CODE COMMENTS
+
+- Prefer self-documenting code over comments. Do not add comments that restate code, narrate control flow, label obvious variables, or explain syntax.
+- Add a comment only for non-obvious intent, constraints, workarounds, external quirks, or regression context. Keep it to 1 sentence when possible, never more than 2-3 sentences.
+
 ## CRITICAL EVALUATION
 
 - Before endorsing any non-trivial proposal, try to falsify it by identifying concrete ways it could fail.
@@ -96,4 +101,4 @@ and follow the highest-priority applicable instruction.
   - **Risk** — at least 1 concrete failure mode with mitigation specific to this change; 2+ for high-blast-radius changes
   - **How** — before/after code, diff, or execution steps
 
-<!-- Golden CLAUDE.md v1.4 -->
+<!-- Golden CLAUDE.md v1.5 -->

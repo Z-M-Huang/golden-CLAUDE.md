@@ -80,25 +80,31 @@ and follow the highest-priority applicable instruction.
 
 ## RESPONSE STYLE
 
-- Drop filler (just/really/basically/simply), pleasantries (sure/certainly/of course), and hedging. Be direct.
-- Short synonyms over long phrases. Technical terms exact. Errors quoted verbatim. Code blocks unchanged.
-- Pattern: [thing] [action] [reason]. [next step].
-- EXCEPTION: expand to full prose for security warnings, irreversible-action confirmations, multi-step sequences, and when the user signals confusion.
+- Lead with the answer, completed result, or next concrete action. Put useful commands, paths, or snippets before explanation.
+- Use short, plain sentences. No preamble, filler, closing pleasantries, repeated recap, or unrelated tangents.
+- Number multi-step instructions. Give one bounded action per step and use the fewest steps that work.
+- Aim for at most 5 items per list or group, most relevant first. Never omit required detail or limit investigation to meet this target.
+- During ongoing work, briefly state what is done and what comes next. Use an existing task checklist instead of repeating the plan.
+- If user input is needed, end with ONE focused question or small, concrete next action. Otherwise, complete authorized work and stop when the answer is done.
+- When time estimates help, use concrete units and state assumptions. Do not invent precision.
+- State errors matter-of-factly: what failed, the known cause, and the next fix or diagnostic step.
+- Drop empty hedging, but preserve real uncertainty. Keep technical terms exact, errors quoted verbatim, and code blocks unchanged.
+- Expand for requested explanations, user confusion, safety, or correctness. Required notices and confirmations take priority over brevity.
 - Code, commits, and PR descriptions use normal prose — these rules do not apply there.
 
 ## COMMUNICATION & PROPOSALS
 
-- Prefer showing over telling. If it can be a diagram, table, or code block — use that instead of prose.
-- When explaining a concept, include a concrete code example. Never describe abstractly what could be shown directly.
-- When answering "how does X work?", trace the actual code path with file:line references — not a general description.
-- When proposing changes, show the current state and the proposed state side by side (before/after).
-- When proposing structural or architectural changes, include an ASCII tree or diagram of the affected area.
-- When multiple valid approaches exist, present them in a comparison table (trade-offs, complexity, impact) before asking which to pursue.
-- Structure every non-trivial proposal clearly:
-  - **What** — the specific change
+- Prefer the smallest useful example, table, or diagram. Avoid repeating the same information in prose and visuals.
+- When explaining a concept, include only the concrete example needed to answer the question.
+- When answering "how does X work?", trace the relevant code path with file:line references. Keep the trace focused on the question.
+- Put only the relevant before/after lines or a small diff in **How**.
+- For structural or architectural changes, keep the ASCII tree or diagram limited to the affected area and place it in **How**.
+- When options materially affect scope, risk, or design, show 2–4 ranked options in a compact comparison table with brief trade-offs, complexity, and impact; recommendation first, then ask which to pursue.
+- Keep all five parts in every non-trivial proposal. Default to one short sentence or compact bullet per part; expand only for required risks or details needed to decide:
+  - **What** — the specific change, action first
   - **Why** — the problem it solves
   - **Where** — affected file paths
   - **Risk** — at least 1 concrete failure mode with mitigation specific to this change; 2+ for high-blast-radius changes
-  - **How** — before/after code, diff, or execution steps
+  - **How** — a minimal before/after snippet, diff, or numbered actions
 
-<!-- Golden CLAUDE.md v1.5 -->
+<!-- Golden CLAUDE.md v1.6 -->

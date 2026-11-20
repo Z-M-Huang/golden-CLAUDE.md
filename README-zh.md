@@ -2,40 +2,42 @@
 
 [English](README.md) | 中文
 
-一份开箱即用的 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 行为规则模板。基于大量研究，操作化写法，不到100行。
+一份开箱即用的 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 行为规则模板。基于大量研究，操作化写法。
 
 从30多份高质量的 CLAUDE.md 文件、博客文章和 Anthropic 官方文档中，提炼出一套通用的行为规则。
 
 ## 快速开始
 
-**安装**（推荐）— 作为 Claude Code 的默认行为规则全局生效：
+选择一个安装位置，在终端中运行对应的命令。
+
+| 适用范围 | 命令 |
+|---------|------|
+| 个人所有项目（推荐） | `rules_dir="$HOME/.claude/rules"` |
+| 单个团队仓库，在仓库根目录运行 | `rules_dir=".claude/rules"` |
+
+在同一终端中运行以下命令，目标文件系统需支持硬链接。模板下载完整后才会创建 `golden.md`，如果文件已存在，安装会报错退出。要安装中文版，请将下载地址末尾的 `CLAUDE.md` 改为 `CLAUDE.zh.md`。
 
 ```bash
-mkdir -p ~/.claude && curl -o ~/.claude/CLAUDE.md https://raw.githubusercontent.com/Z-M-Huang/golden-CLAUDE.md/main/CLAUDE.md
+(
+  set -eu
+  mkdir -p "$rules_dir"
+  download_dir=$(mktemp -d "$rules_dir/.golden.XXXXXXXX")
+  trap 'rm -f "$download_dir/golden.md"; rmdir "$download_dir"' EXIT
+  curl -fsSL -o "$download_dir/golden.md" https://raw.githubusercontent.com/Z-M-Huang/golden-CLAUDE.md/main/CLAUDE.md
+  ln "$download_dir/golden.md" "$rules_dir/"
+)
 ```
 
-这是推荐做法。行为规则是通用的，不会因项目而异，所以放在用户级别（`~/.claude/CLAUDE.md`）最合适。项目根目录的 `CLAUDE.md` 留给项目专属信息（技术栈、测试命令、约定等）。
-
-**团队共享** — 作为规则文件提交到仓库：
-
-```bash
-mkdir -p .claude/rules && curl -o .claude/rules/golden.md https://raw.githubusercontent.com/Z-M-Huang/golden-CLAUDE.md/main/CLAUDE.md
-```
-
-> 用 `.claude/rules/` 而不是项目根目录，可以把行为规则和项目信息分开管理。Claude Code 会自动加载两者。
-
-**已有 CLAUDE.md** — 把 Golden 规则粘贴到你文件的**最顶部**，放在项目专属规则之上。行为规则放在前面，注意力预算的利用率最高。
-
-> 如果合并后的 CLAUDE.md 超过约120行，建议拆分：行为规则放 `~/.claude/CLAUDE.md`，项目专属规则放 `./CLAUDE.md`。详见 [常见问题](https://github.com/Z-M-Huang/golden-CLAUDE.md/wiki/FAQ-zh)。
+Claude Code 会同时加载 `golden.md` 和项目的 `CLAUDE.md`。团队安装后，可将 `.claude/rules/golden.md` 纳入版本控制。如果之前已经安装过规则文件，或把规则粘贴进了 `CLAUDE.md`，请对照新版在原处合并更新，以免重复加载。
 
 ## 模板内容
 
 | 章节 | 用途 |
 |------|------|
-| **核心承诺** | 6条核心承诺 — 验证、诚实、工具确认事实、勤勉、代码理解、安全 |
-| **修改代码之前** | 编辑前检查清单 — 先读代码、检查已有模式、不要假设 |
+| **核心承诺** | 核实上下文和事实，说明不确定之处，执行破坏性操作前取得确认 |
+| **修改代码之前** | 先阅读相关代码，复用已有功能，有缺口时优先选用持续维护的软件包 |
 | **沟通诚实** | 反讨好、暴露困惑、对不好的想法提出反对意见 |
-| **验证质量** | 最小有效改动、可审查步骤、切斯特顿之篱笆、优先编辑而非新建 |
+| **验证质量** | 做出最小有效改动，报告检查方式、结果和仍未验证的部分 |
 | **批判评估** | 先证伪再认可、可见的风险分析、默认非简单、禁止泛泛警告 |
 | **安全底线** | 统一的破坏性操作防护、密钥保护、权限范围确认 |
 | **自律守则** | 不走捷径、不过度设计、崩溃是数据、追根溯源 |
@@ -57,7 +59,8 @@ CLAUDE.md 规则是**纵深防御，不是安全保证**。需要注意：
 
 - 长对话中规则可能会衰减 — 保持会话聚焦
 - Claude 可能承认了规则但仍然违反（[已知问题](https://github.com/anthropics/claude-code/issues/2544)）
-- 配合外部强制手段使用：git hooks、[Claude Code 权限模式](https://docs.anthropic.com/en/docs/claude-code/security)、文件系统权限
+- 内置的 Explore 和 Plan 子代理启动时会跳过用户级和项目级指令。委派任务时，在任务说明中写明相关约束。[子代理的上下文](https://code.claude.com/docs/en/sub-agents#what-loads-at-startup)
+- 需要强制执行的工具限制，可通过 Claude Code 权限规则或钩子实施。Git 钩子和文件系统权限也可用于保护仓库和文件操作。[权限规则](https://code.claude.com/docs/en/permissions) · [Claude Code 钩子](https://code.claude.com/docs/en/hooks)
 
 这些规则能明显提高遵循度，但不能消除风险。
 

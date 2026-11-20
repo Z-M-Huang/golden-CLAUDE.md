@@ -2,40 +2,42 @@
 
 English | [中文](README-zh.md)
 
-A copy-paste-ready behavioral template for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Research-backed. Operational. Under 100 lines.
+A copy-paste-ready behavioral template for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Research-backed. Operational.
 
 Distilled from 30+ of the most successful CLAUDE.md files, blog posts, and Anthropic's own documentation into one firm, general-purpose set of behavioral rules.
 
 ## Quick Start
 
-**Install** (recommended) — apply globally as your default Claude Code behavior:
+Choose one destination and run its command in your shell.
+
+| Scope | Command |
+|-------|---------|
+| All your projects (recommended) | `rules_dir="$HOME/.claude/rules"` |
+| One team repository, from its root | `rules_dir=".claude/rules"` |
+
+Run the installer in the same shell on a filesystem that supports hard links. It downloads the complete template before creating `golden.md` and refuses to overwrite an existing file.
 
 ```bash
-mkdir -p ~/.claude && curl -o ~/.claude/CLAUDE.md https://raw.githubusercontent.com/Z-M-Huang/golden-CLAUDE.md/main/CLAUDE.md
+(
+  set -eu
+  mkdir -p "$rules_dir"
+  download_dir=$(mktemp -d "$rules_dir/.golden.XXXXXXXX")
+  trap 'rm -f "$download_dir/golden.md"; rmdir "$download_dir"' EXIT
+  curl -fsSL -o "$download_dir/golden.md" https://raw.githubusercontent.com/Z-M-Huang/golden-CLAUDE.md/main/CLAUDE.md
+  ln "$download_dir/golden.md" "$rules_dir/"
+)
 ```
 
-This is the recommended approach. Behavioral rules are universal — they don't change per project, so user scope (`~/.claude/CLAUDE.md`) is the natural home. Your project-root `CLAUDE.md` stays free for project-specific context (tech stack, test commands, conventions).
-
-**Share with your team** — commit to your repository as a rules file:
-
-```bash
-mkdir -p .claude/rules && curl -o .claude/rules/golden.md https://raw.githubusercontent.com/Z-M-Huang/golden-CLAUDE.md/main/CLAUDE.md
-```
-
-> Using `.claude/rules/` instead of the project root keeps the behavioral rules separate from project context. Claude Code loads both automatically.
-
-**Existing CLAUDE.md** — paste the golden rules at the **top** of your file, above your project-specific rules. Behavioral rules go first for maximum attention budget.
-
-> If your combined CLAUDE.md exceeds ~120 lines, consider splitting: behavioral rules in `~/.claude/CLAUDE.md`, project-specific rules in `./CLAUDE.md`. See the [wiki](../../wiki/FAQ) for details.
+Claude Code loads `golden.md` alongside your project’s `CLAUDE.md`. For a team install, include `.claude/rules/golden.md` in version control. If an earlier version is already in a rules file or pasted into a `CLAUDE.md`, review and merge updates into that copy so Claude loads the rules once.
 
 ## What's Inside
 
 | Section | Purpose |
 |---------|---------|
-| **Core Commitments** | 6 core commitments — verification, honesty, tool-backed facts, diligence, code understanding, safety |
-| **Before Changing Code** | Pre-edit checklist — read first, check existing patterns, never assume |
+| **Core Commitments** | Verify context and facts, state uncertainty, and confirm destructive actions |
+| **Before Changing Code** | Read the relevant code, reuse existing functionality, and prefer maintained packages for gaps |
 | **Honesty & Communication** | Anti-sycophancy, surface confusion, push back on bad ideas |
-| **Verification & Quality** | Smallest effective change, reviewable steps, Chesterton's fence, prefer editing over creating |
+| **Verification & Quality** | Make the smallest effective change and report the check, its outcome, and remaining uncertainty |
 | **Critical Evaluation** | Falsify before endorsing, visible Risk section, inverted non-trivial default, no generic warnings |
 | **Safety & Boundaries** | Consolidated destructive-action guard, secrets protection, permission-scope clarification |
 | **Discipline** | No shortcuts, no over-engineering, crashes are data, root-cause investigation |
@@ -57,7 +59,8 @@ CLAUDE.md rules are **defense-in-depth, not a security guarantee**. Be aware:
 
 - Rules may degrade over long conversations — keep sessions focused
 - Claude may acknowledge a rule and still violate it ([known issue](https://github.com/anthropics/claude-code/issues/2544))
-- Pair with external enforcement: git hooks, [Claude Code permission modes](https://docs.anthropic.com/en/docs/claude-code/security), filesystem permissions
+- The built-in Explore and Plan agents skip user and project instructions at startup. Pass relevant constraints in the task prompt when delegating. [Subagent context](https://code.claude.com/docs/en/sub-agents#what-loads-at-startup)
+- Enforce mandatory tool restrictions with Claude Code permission rules or hooks. Git hooks and filesystem permissions can also protect repository and file operations. [Permission rules](https://code.claude.com/docs/en/permissions) · [Claude Code hooks](https://code.claude.com/docs/en/hooks)
 
 These rules measurably improve compliance. They do not eliminate risk.
 
